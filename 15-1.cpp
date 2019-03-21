@@ -22,7 +22,7 @@ int main()
 			exits != 0)
 		{
 			system("cls");
-			cout << endl << "Bye" << endl;
+			cout << "Bye" << endl;
 			exit(1);
 		}
 	} while (exits != 0);
@@ -53,7 +53,7 @@ int Action(int* a, int* b, int const* size)
 	}
 	else if (foo == 4)
 	{
-		cout << endl << "Bye" << endl;
+		cout << "Bye" << endl;
 		exit(1);
 	}
 	else
