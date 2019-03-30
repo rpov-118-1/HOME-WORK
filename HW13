@@ -1,0 +1,357 @@
+/*
+//Встреча 25
+//Задание 1
+#include "iostream"
+#include "ctime"
+using namespace std;
+int main(){
+	srand(time(NULL));
+	int arr1[10], arr2[10] = { 0 };
+	for (int i = 0; i < 10; i++) {
+		arr1[i] = rand() % 20;
+	}
+	for (int i = 0; i < 10; i++) {
+		*(arr2 + i) = *(arr1 + i);
+	}cout << "First array\n";
+	for (int i = 0; i < 10; i++) {
+		cout << arr1[i] << " ";
+	}cout << "\nSecond array\n";
+	for (int i = 0; i < 10; i++) {
+		cout << arr2[i] << " ";
+	}cout << endl;
+    return 0;
+}
+//Встреча 25
+//Задание 2
+#include "iostream"
+#include "ctime"
+using namespace std;
+int main() {
+	srand(time(NULL));
+	const size_t SIZE = 10;
+	int arr1[SIZE];
+	cout << "Init array\n";
+	for (int i = 0; i < SIZE; i++) {
+		arr1[i] = rand() % 20;
+		cout << arr1[i] << " ";
+	}
+	for (int i = 0; i < SIZE / 2; i++) {
+		int temp = *(arr1 + i);
+		*(arr1 + i) = *(arr1 + (SIZE - 1 - i));
+		*(arr1 + (SIZE - 1 - i)) = temp;
+	}
+	cout << "\nYour array\n";
+	for (int i = 0; i < SIZE; i++) {
+		cout << arr1[i] << " ";
+	}
+	
+	return 0;
+}
+//Встреча 25
+//Задание 3
+#include "iostream"
+#include "ctime"
+using namespace std;
+int main() {
+	srand(time(NULL));
+	const size_t SIZE = 10;
+	int arr1[SIZE], arr2[SIZE] = { 0 };
+	cout << "Init array\n";
+	for (int i = 0; i < SIZE; i++) {
+		arr1[i] = rand() % 20;
+		cout << arr1[i] << " ";
+	}
+	for (int i = 0; i < SIZE; i++) {
+		*(arr2 + i) = *(arr1 + (SIZE - 1 - i));
+	}
+	cout << "\nYour array\n";
+	for (int i = 0; i < SIZE; i++) {
+		cout << arr2[i] << " ";
+	}
+	return 0;
+}
+//Встреча 26
+//Задание 1
+#include "iostream"
+#include "ctime"
+#include "iomanip"
+using namespace std;
+int main() {
+	srand(time(NULL));
+	size_t M, N, K;
+	int l = 0;
+	cout << "Enter M\n";
+	cin >> M;
+	cout << "Enter N\n";
+	cin >> N;
+	int* A = new int[M];
+	int* B = new int[N];
+	for (int i = 0; i < M; i++)
+		A[i] = rand() % 10;
+	for (int i = 0; i < N; i++)
+		B[i] = rand() % 10;
+	bool alreadyThere;
+	for (int i = 0; i < M; i++) {
+		alreadyThere = false;
+		for (int j = 0; j < N; j++) {
+			if (A[i] == B[j]) {
+				l++;
+				alreadyThere = true;
+				break;
+			}
+		}
+	}
+	K = M - l;				//размер 3 массива
+	int* C = new int[K];
+	bool temp;
+	for (int i = 0, g = 0; i < M; i++) {
+		alreadyThere = false;
+		for (int j = 0; j < N; j++) {
+			if (A[i] == B[j]) {
+				alreadyThere = true;
+				break;
+			}
+		}
+		if (!alreadyThere) {
+			temp = false;
+			for (int k = 0; k < g; k++) {
+				if (A[i] == C[g]) {
+					temp = true;
+					break;
+				}
+			}
+			if (!temp) {
+				C[g] = A[i];							//заполнение 3 массива элементами
+				g++;
+			}
+		}
+	}
+	int* D = new int[K];
+	int q = 0;
+	for (int i = 0; i < K; i++) {
+		alreadyThere = false;
+		int g = 0;
+		for (int j = 0; j < i; j++) {
+			if (C[i] == C[j]) {
+				g++;
+			}
+		}
+		if (g < 1) {
+			D[q] = C[i];
+			q++;
+		}
+	}
+	int* E = new int[q];
+	for (int i = 0; i < q; i++) {
+		E[i] = D[i];
+	}
+	cout << "Array A\n";
+	for (int i = 0; i < M; i++)
+		cout << A[i] << " ";
+	cout << endl;
+	cout << "Array B\n";
+	for (int i = 0; i < N; i++)
+		cout << B[i] << " ";
+	cout << endl;
+	cout << "Array C\n";
+	for (int i = 0; i < K; i++)
+		cout << C[i] << " ";
+	cout << endl;
+	cout << "Array D\n";
+	for (int i = 0; i < K; i++)
+		cout << D[i] << " ";
+	cout << endl;
+	cout << "Array E\n";
+	for (int i = 0; i < q; i++)
+		cout << E[i] << " ";
+	cout << endl;
+	cout << q << endl;
+	delete[] A;
+	delete[] B;
+	delete[] C;
+	delete[] D;
+	delete[] E;
+	return 0;
+}
+*/
+
+
+//Встреча 26
+//Задание 2
+
+#include "iostream"
+#include "ctime"
+#include "malloc.h"
+
+using namespace std;
+void printArr(int* arr); //функция печати массива
+//void fillArr(int* arr, int size); //функция заполнения массива случайными числами
+
+int main() {
+	srand(time(NULL));
+
+	size_t M, N;
+	cout << "Enter a size of first array\n";
+	cin >> M;
+	cout << "Enter a size of second array\n";
+	cin >> N;
+	int* farr;
+	int* sarr;
+	int* tarr;
+	int* finarr;
+	int uniq = 0;
+
+	//создаем и заполняем динамические массивы размеров М и N интов
+	farr = (int*)malloc(sizeof(int) * M);
+	for (int i = 0; i < M; i++) {
+		*(farr + i) = rand() % 20;
+	}
+	sarr = (int*)malloc(sizeof(int) * N);
+	for (int i = 0; i < N; i++) {
+		*(sarr + i) = rand() % 20;
+	}
+
+	// определяем количество уникальных элементов
+	bool temp;
+	for (int i = 0; i < M; i++) {
+		temp = false;
+		for (int j = 0; j < N; j++) {
+			if (farr[i] == sarr[j]) {
+				temp = true;
+				break;
+			}
+		}
+		if (!temp) {
+			uniq++;
+		}
+	}
+	for (int i = 0; i < N; i++) {
+		temp = false;
+		for (int j = 0; j < M; j++) {
+			if (sarr[i] == farr[j]) {
+				temp = true;
+				break;
+			}
+		}
+		if (!temp) {
+			uniq++;
+		}
+	}
+
+	// создаем 3 массив с уникальными элементами, сначала из 1 массива, затем из 2
+	tarr = (int*)malloc(sizeof(int) * uniq);
+	int g;
+	if (M > N) {
+		g = 0; // счетчик для итераций по массиву
+		for (int i = 0; i < M; i++) {
+			temp = false;
+			for (int j = 0; j < N; j++) {
+				if (farr[i] == sarr[j]) {
+					temp = true;
+					break;
+				}
+			}
+			if (!temp) {
+				tarr[g] = farr[i];
+				g++;
+			}
+		}
+		for (int i = 0; i < N; i++) {
+			temp = false;
+			for (int j = 0; j < M; j++) {
+				if (sarr[i] == farr[j]) {
+					temp = true;
+					break;
+				}
+			}
+			if (!temp) {
+				tarr[g] = sarr[i];
+				g++;
+			}
+		}
+	}
+	else {
+		g = 0; // счетчик для итераций по массиву
+		for (int i = 0; i < N; i++) {
+			temp = false;
+			for (int j = 0; j < M; j++) {
+				if (sarr[i] == farr[j]) {
+					temp = true;
+					break;
+				}
+			}
+			if (!temp) {
+				tarr[g] = sarr[i];
+				g++;
+			}
+		}
+		for (int i = 0; i < M; i++) {
+			temp = false;
+			for (int j = 0; j < N; j++) {
+				if (farr[i] == sarr[j]) {
+					temp = true;
+					break;
+				}
+			}
+			if (!temp) {
+				tarr[g] = farr[i];
+				g++;
+			}
+		}
+	}
+
+	// ищем в 3 массиве количество уникальных элементов
+	int count = 0; // размер последнего массива с уникальными числами
+	for (int i = 0; i < g; i++) {
+		temp = false;
+		int c = 0;
+		for (int j = 0; j < i; j++) {
+			if (tarr[i] == tarr[j]) {
+				c++;
+			}
+		}
+		if (c < 1) {
+			count++;
+		}
+	}
+
+	// создаем финальный массив с неповоторяющимися элементами
+	finarr = (int*)malloc(sizeof(int) * count);
+	int q = 0;
+
+	for (int i = 0; i < g; i++) {
+		temp = false;
+		int c = 0;
+		for (int j = 0; j < i; j++) {
+			if (tarr[i] == tarr[j]) {
+				c++;
+			}
+		}
+		if (c < 1) {
+			finarr[q] = tarr[i];
+			q++;
+		}
+	}
+		
+	
+	cout << "First array:\n";
+	printArr(farr);
+	cout << "Second array:\n";
+	printArr(sarr);
+	cout << "Final array:\n";
+	printArr(finarr);
+	free(farr);
+	free(sarr);
+	free(tarr);
+	free(finarr);
+
+	return 0;
+}
+	
+
+void printArr(int* arr) {
+	int size = _msize(arr) / sizeof(int);
+	for (int i = 0; i < size; i++) {
+		cout << arr[i] << " ";
+	}cout << endl;
+}
