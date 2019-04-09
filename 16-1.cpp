@@ -43,5 +43,5 @@ void Lowercase(char * str1){// функция преобразует строк�
 int main() {
 	int a = 1234;
 	char arr[100] = {};
-	NumberToString(a, arr);
+	cout << NumberToString(a, arr) << endl;
 }
