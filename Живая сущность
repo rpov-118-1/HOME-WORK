@@ -1,0 +1,61 @@
+#include <iostream>
+#include <windows.h>
+#include<string>
+
+using namespace std;
+
+enum type { bird, cattle, human };
+struct charact
+{
+	type choise;
+	bool c;
+	int iq;
+	string  color;
+	double speed;
+	void st()
+	{
+		int choise;
+		cin >> choise;
+		for (int i = 0; i < 10; i++) {
+			cout << " «Живая сущность»" << endl;
+
+			switch (choise)
+			{
+			case 0:
+				cout << "Птица" << endl
+					<< "скорость: ";
+				cin >> speed;
+				cout << "цвет: ";
+				cin >> color;
+				break;
+			case 1:
+				cout << "Скот" << endl
+					<< "скорость: ";
+				cin >> speed;
+				cout << "цвет: ";
+				cin >> color;
+				break;
+			case 2:
+				cout << "Человек" << endl
+					<< "IQ? ";
+				cin >> iq;
+				cout << "скорость: ";
+				cin >> speed;
+				cout << "цвет: ";
+				cin >> color;
+				break;
+			}
+		}
+	}
+
+	int main()
+	{
+
+		setlocale(LC_ALL, "Russian");
+		cout << "Введите тип(0 - птица, 1 - скот, 2 - человек):";
+		charact e[10];
+		for (int i = 0; i < 10; i++)
+			e[i].st();
+		return 0;
+	}
+};
