@@ -127,3 +127,113 @@ void Sim(char *ar, char s,int a)
 		for (int i = 0; i <= k1; i++)
 			cout << b[i];
 }
+
+
+
+Задание 3:
+Написать функцию, которая вставляет в строку в указанную позицию заданный символ
+
+
+#include "pch.h"
+#include "iostream"
+#include "ctime"
+#include "stdlib.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include "cstdio"
+#include "cstring"
+#include "cstdio"
+#include "cstring"
+#include "cstdlib"
+#include "conio.h"
+#include "ctype.h"
+
+using namespace std;
+const size_t N = 1024;
+typedef char T[N];
+void func(char *ar, int dlina, int zn);
+void func1(char *ar, int dlina, int zn,char s);
+void  Sim(char *ar, char s, int a);
+int main()
+{
+	int n = 0, znach = 0;	char *ar = 0, simvol; T arr = {};
+
+
+	gets_s(arr);
+	ar = arr;
+	n = strlen(arr);
+	cout << "Enter the number of the character whose value you want to delete." << endl;
+	cin >> simvol;
+	cout << "Enter the number of the character whose value you want to delete znach.";
+		cin >> znach;
+
+		func1(ar, n, znach, simvol);
+
+	//Sim(ar, simvol, n);
+
+	//func(ar, n, znach);
+
+	return 0;
+}
+void func(char *ar, int dlina, int zn)
+{
+	char  *a = 0, k = 0; a = new char[dlina + 1];
+	for (int i = zn+1 ; i < dlina + 1; i++)
+	{
+
+		a[k] = ar[i]; k++;
+		cout << a[k];
+	}
+	k = 0;
+	while (a[k])
+	{
+		ar[zn + k] = a[k];
+		k++;
+	}
+	delete[]a;
+	//for (int i = 0; i < zn + k; i++)
+		//cout << "\n     " << ar[i];
+}
+void func1(char *ar, int dlina, int zn,char s)
+{
+	
+		char  *a = 0, k = 0; a = new char[dlina + 1];
+		
+		for (int i = zn-1 ; i < dlina + 1; i++)
+		{
+
+			a[k] = ar[i]; k++;
+			cout << a[k];
+		}
+		k = 0;
+		while (a[k])
+		{
+			ar[zn] = s;
+			ar[zn + k] = a[k];
+			k++;
+		}
+		delete[]a;
+		for (int i = 0; i < zn + k; i++)
+		cout << "\n     " << ar[i];
+
+}
+
+void Sim(char *ar, char s, int a)
+{
+
+	int k = 0, k1 = 0; char *b = 0; b = new char[a];
+
+	while (ar[k])
+	{
+		if (ar[k] != s) {
+			b[k1] = ar[k]; k1++; cout << "\n b[k1]" << ar[k];
+		}
+		k++;
+	}
+
+	cout << " znachenie ravno";
+	for (int i = 0; i <= k1; i++)
+		cout << b[i];
+	delete[]b;
+}
+
