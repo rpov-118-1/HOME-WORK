@@ -500,3 +500,166 @@ int Sim2(char *ar,char s)
 
 }
 
+Задание 6:
+Пользователь вводит строку. Определить количество букв, количество цифр и количество
+остальных символов, присутствующих в строке.
+
+#include "pch.h"
+#include "iostream"
+#include "ctime"
+#include "stdlib.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include "cstdio"
+#include "cstring"
+#include "cstdio"
+#include "cstring"
+#include "cstdlib"
+#include "conio.h"
+#include "ctype.h"
+
+using namespace std;
+const size_t N = 1024;
+typedef char T[N];
+void func(char *ar, int dlina, int zn);//Написать функцию, которая удаляет из строки символ с заданным номером.
+void func1(char *ar, int dlina, int zn,char s);//Написать функцию, которая вставляет в строку в указанную позицию заданный символ
+void  Sim(char *ar, char s, int a);// Написать функцию, которая удаляет из строки все вхождения в нее заданного символа.
+void Sim1(char *ar);//Написать программу, которая заменяет все символы точки "." в строке, введенной пользователем, на символы восклицательного знака "!".
+int  Sim2(char *ar,char s);//Пользователь вводит строку символов и искомый символ, посчитать сколько раз он встречается
+void myfunc(char *ar, int dlina, int zn);//Пользователь вводит строку. Определить количество букв, количество цифр и количество остальных символов, присутствующих в строке.
+
+int main()
+{
+	int n = 0, znach = 0;	char *ar = 0, simvol; T arr = {};
+	int ttt = 0;
+
+	gets_s(arr);
+	ar = arr;
+	n = strlen(arr);
+	//cout << "Enter the number of the character whose value you want to delete." << endl;
+	//cin >> simvol;
+	//cout << "Enter the number of the character whose value you want to delete znach.";
+	//	cin >> znach;
+
+	myfunc(ar, n, 0);
+
+	//	Sim1(ar);
+		/*
+		ttt = Sim2(ar, simvol);
+		cout <<"chislo znacheni\t"<< ttt;
+		*/
+		//func1(ar, n, znach, simvol);
+
+	//Sim(ar, simvol, n);
+
+	//func(ar, n, znach);
+
+	return 0;
+}
+void func(char *ar, int dlina, int zn)
+{
+	char  *a = 0, k = 0; a = new char[dlina + 1];
+	for (int i = zn+1 ; i < dlina + 1; i++)
+	{
+
+		a[k] = ar[i]; k++;
+		cout << a[k];
+	}
+	k = 0;
+	while (a[k])
+	{
+		ar[zn + k] = a[k];
+		k++;
+	}
+	delete[]a;
+	//for (int i = 0; i < zn + k; i++)
+		//cout << "\n     " << ar[i];
+}
+void func1(char *ar, int dlina, int zn,char s)
+{
+	
+		char  *a = 0, k = 0; a = new char[dlina + 1];
+		
+		for (int i = zn-1 ; i < dlina + 1; i++)
+		{
+
+			a[k] = ar[i]; k++;
+			cout << a[k];
+		}
+		k = 0;
+		while (a[k])
+		{
+			ar[zn] = s;
+			ar[zn + k] = a[k];
+			k++;
+		}
+		delete[]a;
+		for (int i = 0; i < zn + k; i++)
+		cout << "\n     " << ar[i];
+
+}
+
+void Sim(char *ar, char s, int a)
+{
+
+	int k = 0, k1 = 0; char *b = 0; b = new char[a];
+
+	while (ar[k])
+	{
+		if (ar[k] != s) {
+			b[k1] = ar[k]; k1++; cout << "\n b[k1]" << ar[k];
+		}
+		k++;
+	}
+
+	cout << " znachenie ravno";
+	for (int i = 0; i <= k1; i++)
+		cout << b[i];
+	delete[]b;
+}
+void Sim1(char *ar)
+{
+
+
+	int k = 0;
+
+	while (ar[k])
+	{
+		if (ar[k] == '.') {ar[k]='!'; }
+		cout <<"\n"<< ar[k];
+		k++;
+	}
+
+}
+int Sim2(char *ar,char s)
+{
+
+
+	int k = 0; int k1 = 0;
+
+	while (ar[k])
+	{
+		if (ar[k] == s) { k1++; }
+	
+		k++;
+	}
+	
+	return k1;
+
+}
+void myfunc(char *ar, int dlina, int zn)
+{
+	int k = 0; int bukva = 0,cifra=0,ost=0;
+
+	while (ar[k])
+	{
+		if ((ar[k] >= 'a' && ar[k] <='z')||(ar[k] >= 'A' && ar[k] <= 'Z')) { bukva++; }
+		if (ar[k] >= '0' && ar[k] <= '9') { cifra++; }
+		k++;
+	}
+	cout << " \nbukva\t" << bukva;
+	cout << " \ncifra\t" << cifra;
+	cout << " \nost\t" << dlina- (bukva+ cifra);
+}
+
+
