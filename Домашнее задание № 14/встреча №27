@@ -1,1 +1,115 @@
+Тема: Указатели. Передача параметров
+Домашнее задание
+Задание:
+Написать следующие функции для работы с динамическим массивом:
+ Функция распределения динамической памяти
+ Функция инициализации динамического массива
+ Функция печати динамического массива
+ Функция удаления динамического массива
+ Функция добавления элемента в конец массива
+ Функция вставки элемента по указанному индексу
+ Функция удаления элемента по указанному индексу
 
+
+#include "pch.h"
+#include "iostream"
+#include "ctime"
+#include "stdlib.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include "cstdio"
+#include "cstring"
+#include "cstdio"
+#include "cstring"
+#include "cstdlib"
+#include "conio.h"
+#include "ctype.h"
+#include "ctime"
+#include "iomanip"
+int k1;
+using namespace std;
+const size_t N = 10;
+typedef int T[N];
+
+double*creature(int n)
+{
+	double *a = 0;
+	a = (double*)malloc(sizeof(double)*n);
+	return a;
+}
+void init(double *p, int n) 
+{
+	srand(time(NULL));
+	for (int i = 0; i < n; i++)
+		p[i] = rand();
+}
+void print (double *p, int n)
+{
+	
+	for (int i = 0; i < n; i++)
+		cout << "\n p[i]" << setw(20) << p[i];
+}
+void delet (double *p)
+{
+
+	free (p);
+}
+
+double*adding(double*p,int n,double v)
+{
+	double *a = 0;
+	a = creature(n+1);
+	for (int i = 0; i < n; i++)
+		a[i] = p[i];
+	a[n] = v;
+	delet(p);
+	return a;
+}
+double*adding_1(double*p, int n, double v,int m)
+{
+	double *a = 0;
+	a = creature(n + 1);
+	for (int i = 0; i < m; i++)
+		a[i] = p[i];
+	a[m] = v;
+	for (int i = m+1; i < n+1; i++)
+		a[i] = p[i-1];
+	
+	delet(p);
+	return a;
+}
+double*adding_2(double*p, int n,  int m)
+{
+	double *a = 0;
+	a = creature(n - 1);
+	for (int i = 0; i < m; i++)
+		a[i] = p[i];
+	
+	for (int i = m ; i < n - 1; i++)
+		a[i] = p[i + 1];
+
+	delet(p);
+	return a;
+}
+
+
+
+int main()
+{
+	double *a = 0; int n = 4;
+	
+	a=creature(n);
+	init(a, n);
+	print(a, n);
+	
+	double valie=0;
+
+	cout<< "\nenter value";
+	cin >> valie;
+	
+	a = adding_2(a, n, 3);
+	n = n - 1;
+	print(a, n);
+
+	return 0;
+}
