@@ -75,3 +75,95 @@ int main()
 	if (k1 == 0) { cout << "\n there are no prime numbers"; }
 	return 0;
 }
+
+
+Задание 2:
+Написать функцию, которая получает указатель на статический массив и его размер. Функция
+распределяет положительные, отрицательные и нулевые элементы в отдельные динамические
+массивы
+
+
+#include "pch.h"
+#include "iostream"
+#include "ctime"
+#include "stdlib.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include "cstdio"
+#include "cstring"
+#include "cstdio"
+#include "cstring"
+#include "cstdlib"
+#include "conio.h"
+#include "ctype.h"
+#include "ctime"
+int k1;
+using namespace std;
+const size_t N = 10;
+typedef int T[N];
+
+bool pozitiv(int element)
+{
+
+	return element > 0;
+}
+bool negativ(int element)
+{
+	return element < 0;
+}
+bool null(int element)
+{
+	return element == 0;
+}
+
+int* func(int *p,int n,bool (*algo)(int))
+{
+	int *b = 0; int kb = 0;
+	b = new int[n];
+	k1 = 0;
+	for (int i = 0; i < n; i++)
+		if ((*algo)(p[i])) { b[kb] = p[i]; cout << "\n" << p[i] << endl; k1++; kb++; }
+	
+	return b;
+}
+int main()
+{
+	srand(time(NULL));
+	T A = {}; int *a = 0; bool (*ptr)( int);
+	int *b = 0, *c = 0, *d = 0, *e = 0;
+	for (int i = 1; i < N; i++)
+	{
+		A[i] = rand()%20;
+		
+		
+	}
+	a = A;
+	ptr = &null;
+	b= func(a, N, ptr);
+
+	c = new int[k1];
+	for (int i = 0; i < k1; i++)
+	{
+		c[i] = b[i];
+		cout <<"\nc[i]\t"<< c[i];
+	}
+
+	ptr = &pozitiv;
+	b = func(a, N, ptr);
+	d = new int[k1];
+	for (int i = 0; i < k1; i++)
+	{
+		d[i] = b[i];
+		cout << "\nd[i]\t" << d[i];
+	}
+	ptr = &negativ;
+	b = func(a, N, ptr);
+	e = new int[k1];
+	for (int i = 0; i < k1; i++)
+	{
+		e[i] = b[i];
+		cout << "\ne[i]\t" << e[i];
+	}
+	
+	return 0;
+}
