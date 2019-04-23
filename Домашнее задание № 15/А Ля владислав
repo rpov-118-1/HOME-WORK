@@ -1,0 +1,135 @@
+Доработка А Ля Владислав
+#include "pch.h"
+#include "iostream"
+#include "ctime"
+#include "stdlib.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include "cstdio"
+#include "cstring"
+#include "cstdio"
+#include "cstring"
+#include "cstdlib"
+#include "conio.h"
+#include "ctype.h"
+using namespace std;
+const size_t N = 10;
+typedef int T[N];
+int Getchoice()
+{
+	
+	int choice = 0;
+	cout << "\nselect the necessary action"
+		<< "\n1. search for the minimum of two arrays"
+		<< "\n2. Finding the minimum value of two arrays"
+		<< "\n3. Calculate the average of both arrays"
+		<< "\nEnter value.......";
+	cin >> choice;
+	return choice;
+}
+
+int max(int *arrA, int sA);//определение максимального элемента 
+int min(int *arrA, int sA);//Определение минимального элемента
+int avg(int *arrA, int sA);// определение среднего значения 
+
+auto callbacks[] = {
+  (char*)max, (char*)print_max,
+  (char*)min, (char*)print_max,
+  (char*)avg, (char*)print_avg
+};
+
+void Action(int *arrA, int *arrB, int sA, int sB, int (*ptr)(int *arrA,int sA))
+{
+
+
+	int(*p)(int *arrA, int sA);
+	switch (choice)
+	{
+	case 1:
+
+		(*ptr)(arrA, sA) >= (*ptr)(arrB, sB) ? cout << "\nMAX ELEMENT=\t" << (*ptr)(arrA, sA) : cout << "\nMAX ELEMENT=\t" << (*ptr)(arrB, sB);
+		break;
+	case 2:
+
+		(*ptr)(arrA, sA) <= (*ptr)(arrB, sB) ? cout << "\nMIX ELEMENT=\t" << (*ptr)(arrA, sA) : cout << "\nMIX ELEMENT=\t" << (*ptr)(arrB, sB);
+		break;
+	case 3:
+
+		cout << "\n average value of the first array" << (*ptr)(arrA, sA) << endl;
+		cout << "\n average value of the second array" << (*ptr)(arrB, sB) << endl;
+		break;
+	
+
+	}
+	
+}
+	 
+
+
+int main()
+{
+	T A = {}; T B = {};
+	//инициализация массивов А и Б
+	for (int j = 0; j < N; j++)
+	{
+		A[j] = (int)((((float)rand() / (float)RAND_MAX) * 10) + 0);
+		B[j] = (int)((((float)rand() / (float)RAND_MAX) * 10) + 0);
+		cout << "\n" << A[j] <<"\t"<< B[j]<< endl;
+	}
+	//определение размера массива 
+	int sizeA = sizeof(A) / sizeof(A[0]);
+	int sizeB = sizeof(B) / sizeof(B[0]);
+	//СОЗДАЕМ УКАЗАТЕЛИ И ИНИЦИАЛИЗИРУЕМ ИХ
+	int *a = 0, *b = 0;
+	//УКАЗЫВАЕМ НА ПЕРВЫЙ ЭЛЕМЕНТ МАССИВА
+	a = A; b = B;
+	int choice = Getchoice();
+	
+	auto worker = (int (*)(int*, int))(callbacks[choice*2 + 0]);
+	auto printer = (void (*)(int*, int, int*, int))(callbacks[choice*2 + 1]);
+	
+	printer(A, sizeA, B, sizeB);
+	
+
+	return 0;
+}
+
+void print_max(int *arrA, int sA, int *arrB, int sB) {
+    auto max_a = max(arrA, sA);
+    auto max_b = max(arrB, sB);
+    if (max_a >= max_b) {
+	  cout << "\nMAX ELEMENT=\t" << max(arrA, sA);
+	} else {
+	  cout << "\nMAX ELEMENT=\t" << max(arrB, sB);
+	}
+}
+
+int max(int *arrA, int sA) 
+{
+	int max = arrA[0]; 
+	for (int i = 1; i < sA; i++)
+	{
+		if (arrA[i] > max) { max = arrA[i]; }
+	}
+	return max;
+}
+int min(int *arrA, int sA)
+{
+	int min = arrA[0]; 
+	for (int i = 1; i < sA; i++)
+	{
+		if (arrA[i] < min) { min = arrA[i]; }
+	}
+	return min;
+}
+int avg(int *arrA, int sA)
+{
+	int avg = 0;
+
+	for (int i = 0; i < sA; i++)
+	{
+		avg = avg + arrA[i];
+	}
+	avg = avg / sA;
+	return avg;
+}
